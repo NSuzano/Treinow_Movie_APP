@@ -79,16 +79,18 @@ class DetalhesMovie extends StatelessWidget {
                     ],
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 20,
                   ),
                   RatingBar.builder(
                       minRating: 1,
                       initialRating: double.parse("${data.voteAverage}"),
-                      itemSize: 15,
+                      itemSize: 20,
                       tapOnlyMode: true,
                       direction: Axis.horizontal,
                       allowHalfRating: true,
                       itemCount: 10,
+                      glow: true,
+                      ignoreGestures: true,
                       itemPadding: EdgeInsets.symmetric(horizontal: 5),
                       itemBuilder: (context, _) => Icon(
                             Icons.star,
@@ -100,8 +102,21 @@ class DetalhesMovie extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
+                  Text(
+                    "Total Votos: ${data.voteCount.toString()}",
+                    style: TextStyle(fontSize: 15),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
                   Container(
-                    color: Colors.black26,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.black45,
+                        width: 8,
+                      ),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                     child: Padding(
                       padding:
                           EdgeInsets.symmetric(horizontal: 10, vertical: 20),
@@ -109,7 +124,8 @@ class DetalhesMovie extends StatelessWidget {
                         children: [
                           Text(
                             "Sinopse",
-                            style: TextStyle(fontSize: 20),
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
                             height: 20,

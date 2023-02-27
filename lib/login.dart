@@ -69,6 +69,7 @@ class _LoginState extends State<Login> {
                 child: Image.network(
                   "http://cdn.onlinewebfonts.com/svg/img_311846.png",
                   width: 120,
+                  color: Colors.black45,
                 ),
               ),
               TextField(
@@ -101,7 +102,7 @@ class _LoginState extends State<Login> {
                 children: [
                   TextButton(
                     onPressed: () => Get.to(Cadastro()),
-                    child: Text("Cadastre se"),
+                    child: Text("Cadastre-se"),
                   ),
                   ElevatedButton(
                       onPressed: () async {
@@ -110,7 +111,7 @@ class _LoginState extends State<Login> {
                         String? senhaPref = prefs.getString('senha');
 
                         if (emailPref == email && senhaPref == senha) {
-                          Get.to(Home());
+                          Get.offAll(Home());
                         } else {
                           _exibirAlerta();
                         }

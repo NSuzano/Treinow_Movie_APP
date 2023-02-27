@@ -1,4 +1,6 @@
+import 'package:app_treinow_movies/cadastro.dart';
 import 'package:app_treinow_movies/home.dart';
+import 'package:app_treinow_movies/login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData.dark(),
-      home: Home(),
+      home: Login(),
     );
   }
 }

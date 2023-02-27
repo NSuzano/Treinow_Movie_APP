@@ -1,10 +1,12 @@
+import 'package:flutter/cupertino.dart';
+
 class Movies {
   String? posterPath;
   int? id;
   String? backdropPath;
   int? totalResults;
   bool? public;
-  String? revenue;
+  int? revenue;
   int? page;
   List<Results>? results;
   ObjectIds? objectIds;
@@ -151,7 +153,7 @@ class Results {
     popularity = json['popularity'];
     voteCount = json['vote_count'];
     video = json['video'];
-    voteAverage = json['vote_average'];
+    voteAverage = json['vote_average'].toDouble();
   }
 
   Map<String, dynamic> toJson() {
@@ -379,6 +381,38 @@ class Comments {
     data['movie:1771'] = this.movie1771;
     data['movie:10195'] = this.movie10195;
     data['movie:24428'] = this.movie24428;
+    return data;
+  }
+}
+
+class SearchMovie {
+  int? page;
+  List<Results>? results;
+  int? totalResults;
+  int? totalPages;
+
+  SearchMovie({this.page, this.results, this.totalResults, this.totalPages});
+
+  SearchMovie.fromJson(Map<String, dynamic> json) {
+    page = json['page'];
+    if (json['results'] != null) {
+      results = <Results>[];
+      json['results'].forEach((v) {
+        results!.add(new Results.fromJson(v));
+      });
+    }
+    totalResults = json['total_results'];
+    totalPages = json['total_pages'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['page'] = this.page;
+    if (this.results != null) {
+      data['results'] = this.results!.map((v) => v.toJson()).toList();
+    }
+    data['total_results'] = this.totalResults;
+    data['total_pages'] = this.totalPages;
     return data;
   }
 }

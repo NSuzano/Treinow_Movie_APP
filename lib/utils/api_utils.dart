@@ -71,11 +71,17 @@ class Api {
   }
 
   formatData(String? data) {
-    DateTime year = DateTime.parse(data.toString());
-    DateFormat dateFormat = DateFormat('y');
+    String date;
+    if (data != null || data != "") {
+      DateTime year = DateTime.parse(data.toString());
+      DateFormat dateFormat = DateFormat('y');
 
-    String date = dateFormat.format(year);
+      date = dateFormat.format(year);
 
-    return date;
+      date = "($date)";
+      return date;
+    } else {
+      return "";
+    }
   }
 }

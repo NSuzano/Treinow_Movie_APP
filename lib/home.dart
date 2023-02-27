@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:app_treinow_movies/detalhes_movie.dart';
+import 'package:app_treinow_movies/login.dart';
 import 'package:app_treinow_movies/models/movies.dart';
 import 'package:app_treinow_movies/pesquisa.dart';
 import 'package:app_treinow_movies/utils/api_utils.dart';
@@ -38,14 +39,19 @@ class _HomeState extends State<Home> {
           title: Padding(
             padding: EdgeInsets.only(top: 20),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text('Treinow Movies'),
                 IconButton(
                     onPressed: () {
                       showSearch(context: context, delegate: PesquisaFilme());
                     },
-                    icon: Icon(Icons.search))
+                    icon: Icon(Icons.search)),
+                IconButton(
+                    onPressed: () {
+                      Get.offAll(Login());
+                    },
+                    icon: Icon(Icons.logout_outlined)),
               ],
             ),
           ),

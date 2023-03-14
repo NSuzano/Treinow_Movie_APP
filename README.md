@@ -1,6 +1,6 @@
-# app_treinow_movies
+# Treinow App Movies
 
-A new Flutter project.
+Um projeto utilizando Api Movies Database, que retorna uma lista de filmes, mostrando sinopse, votos, aprovação. Inclui botão de pesquisa podendo pesquisar qualquer filme da api. E também tela de cadastro e login com dados salvos internamente com SQlite.
 
 ## Getting Started
 

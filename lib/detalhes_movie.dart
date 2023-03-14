@@ -14,135 +14,137 @@ class DetalhesMovie extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(alignment: Alignment.center, children: [
-              Container(
-                height: 200,
-                width: Get.width,
-                color: Theme.of(context).primaryColor,
-                child: Image.network(
-                  image + "${data.posterPath}",
-                  fit: BoxFit.fitWidth,
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Stack(alignment: Alignment.center, children: [
+                Container(
+                  height: 200,
+                  width: Get.width,
+                  color: Theme.of(context).primaryColor,
+                  child: Image.network(
+                    image + "${data.posterPath}",
+                    fit: BoxFit.fitWidth,
+                  ),
                 ),
+                Positioned(
+                    top: 5,
+                    left: 10,
+                    child: IconButton(
+                      onPressed: () => Get.back(),
+                      icon: Icon(
+                        Icons.arrow_back_ios,
+                        color: Colors.white,
+                      ),
+                    )),
+                Positioned(
+                    top: 5,
+                    right: 10,
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.favorite,
+                        color: Colors.white,
+                      ),
+                    )),
+                Positioned(
+                    bottom: 10,
+                    child: Text(
+                      "${data.title}",
+                      style: TextStyle(fontSize: 22),
+                    )),
+              ]),
+              SizedBox(
+                height: 30,
               ),
-              Positioned(
-                  top: 5,
-                  left: 10,
-                  child: IconButton(
-                    onPressed: () => Get.back(),
-                    icon: Icon(
-                      Icons.arrow_back_ios,
-                      color: Colors.white,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Wrap(
+                      children: [
+                        Text(
+                          '${data.title} ',
+                          style: TextStyle(
+                              fontSize: 22, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          api.formatData(data.releaseDate.toString()),
+                          style: TextStyle(fontSize: 22),
+                        ),
+                      ],
                     ),
-                  )),
-              Positioned(
-                  top: 5,
-                  right: 10,
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.favorite,
-                      color: Colors.white,
+                    SizedBox(
+                      height: 20,
                     ),
-                  )),
-              Positioned(
-                  bottom: 10,
-                  child: Text(
-                    "${data.title}",
-                    style: TextStyle(fontSize: 22),
-                  )),
-            ]),
-            SizedBox(
-              height: 30,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Wrap(
-                    children: [
-                      Text(
-                        '${data.title} ',
-                        style: TextStyle(
-                            fontSize: 22, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        api.formatData(data.releaseDate.toString()),
-                        style: TextStyle(fontSize: 22),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  RatingBar.builder(
-                      minRating: 1,
-                      initialRating: double.parse("${data.voteAverage}"),
-                      itemSize: 20,
-                      tapOnlyMode: true,
-                      direction: Axis.horizontal,
-                      allowHalfRating: true,
-                      itemCount: 10,
-                      glow: true,
-                      ignoreGestures: true,
-                      itemPadding: EdgeInsets.symmetric(horizontal: 5),
-                      itemBuilder: (context, _) => Icon(
-                            Icons.star,
-                            color: Colors.amber,
-                          ),
-                      onRatingUpdate: (rating) {
-                        print(rating);
-                      }),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "Total Votos: ${data.voteCount.toString()}",
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.black45,
-                        width: 8,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
+                    RatingBar.builder(
+                        minRating: 1,
+                        initialRating: double.parse("${data.voteAverage}"),
+                        itemSize: 20,
+                        tapOnlyMode: true,
+                        direction: Axis.horizontal,
+                        allowHalfRating: true,
+                        itemCount: 10,
+                        glow: true,
+                        ignoreGestures: true,
+                        itemPadding: EdgeInsets.symmetric(horizontal: 5),
+                        itemBuilder: (context, _) => Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                            ),
+                        onRatingUpdate: (rating) {
+                          print(rating);
+                        }),
+                    SizedBox(
+                      height: 20,
                     ),
-                    child: Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                      child: Column(
-                        children: [
-                          Text(
-                            "Sinopse",
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Text(
-                            "${data.overview}",
-                            maxLines: 14,
-                            style: TextStyle(fontSize: 18),
-                          ),
-                        ],
+                    Text(
+                      "Total Votos: ${data.voteCount.toString()}",
+                      style: TextStyle(fontSize: 15),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.black45,
+                          width: 8,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                        child: Column(
+                          children: [
+                            Text(
+                              "Sinopse",
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Text(
+                              "${data.overview}",
+                              maxLines: 14,
+                              style: TextStyle(fontSize: 18),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            )
-          ],
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
